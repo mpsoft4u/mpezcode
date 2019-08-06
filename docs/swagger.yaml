@@ -1,0 +1,103 @@
+openapi: 3.0.1
+info:
+  title: MP-EZ-CODE Manufacturer API
+  description: 'This API provides access to the MP-EZ-CODE
+  QR generator. This documentation provides live-testing, but
+  requires a valid API key for access.
+  
+  
+  The API is now open for beta testers!
+  
+  
+  Use our beta API key: 7ef278161ab15097
+  
+  
+  Warning: This key is not for production use.
+  '
+  contact:
+    email: mpezcode@mpsoft4u.de
+  version: 0.1.0-beta
+externalDocs:
+  description: Github Page
+  url: http://github.com/mpsoft4u/mpezcode-api
+servers:
+- url: https://api.mpezcode.com
+tags:
+- name: qrcode
+  description: Generator API
+paths:
+  /mpezcode/v1/generator:
+    post:
+      tags:
+      - qrcode
+      summary: Generate QR-code
+      operationId: updatePet
+      parameters:
+        - in: query
+          name: dpi
+          schema:
+            type: integer
+          required: false
+          description: DPI Setting for output
+      requestBody:
+        description: QR-code data payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QrcodePayload'
+        required: true
+      responses:
+        200:
+          description: PNG image containing QR-code
+        400:
+          description: Invalid parameter specified
+          content: {}
+        422:
+          description: Length limit exceeded for params
+          content: {}
+      security:
+      - api_key:
+        - write
+   
+components:
+  schemas:
+    QrcodePayload:
+      required:
+      - language_code
+      type: object
+      properties:
+        language_code:
+          type: string
+          example: DEU
+        name:
+          type: string
+          example: Einsatzjacke
+        type_name:
+          type: string
+          example: FireStop 1000
+        group_name:
+          type: string
+          example: Jacken
+        construction_year:
+          type: integer
+          example: 2019
+        standard:
+          type: string
+          example: ISO 1234
+        serial_number:
+          type: string
+          example: SN291678273
+        size:
+          type: string
+          example: Einsatzjacke
+        material_reject_after:
+          type: integer
+          example: 15
+        material_impregnate_after:
+          type: integer
+          example: 4
+  securitySchemes:
+    api_key:
+      type: http
+      scheme: bearer
+
