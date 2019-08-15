@@ -95,11 +95,11 @@ components:
           maxLength: 30
         barcode1_number:
           type: string
-          example: 100054
+          example: B100054
           maxLength: 30
         barcode2_number:
           type: string
-          example: 100054
+          example: B100054
           maxLength: 30
         size:
           type: string
