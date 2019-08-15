@@ -69,33 +69,51 @@ components:
         language_code:
           type: string
           example: DEU
+          maxLength: 3
         name:
           type: string
           example: Einsatzjacke
+          maxLength: 30
         type_name:
           type: string
           example: FireStop 1000
+          maxLength: 30
         group_name:
           type: string
           example: Jacken
+          maxLength: 30
         construction_year:
           type: integer
           example: 2019
         standard:
           type: string
           example: ISO 1234
+          maxLength: 30
         serial_number:
           type: string
           example: SN291678273
+          maxLength: 30
+        barcode1_number:
+          type: string
+          example: 100054
+          maxLength: 30
+        barcode2_number:
+          type: string
+          example: 100054
+          maxLength: 30
         size:
           type: string
-          example: Einsatzjacke
+          example: XL
+          maxLength: 10
         material_reject_after:
           type: integer
           example: 15
         material_impregnate_after:
           type: integer
           example: 4
+        description:
+          type: string
+          example: More information...
   securitySchemes:
     api_key:
       type: http
